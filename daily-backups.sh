@@ -15,8 +15,9 @@ backup_location="$HOME/backup_${backupdate}_${RANDOM}.tar.gz"
 backup_desitnation="/cygdrive/e/Automated\ Backups"
 
 # List of folders to backup into the single tar file.
-backup_sources[0]="$HOME/nightly_backup"
-backup_sources[1]="/var/www/html"
+backup_sources[0]="$HOME/Data"
+backup_sources[1]="$HOME/Daily-Backups"
+backup_sources[2]="/var/www/html"
 
 log_error=~/nightly_backup.log
 
@@ -84,7 +85,17 @@ log "BACKUP DESTINATION: $backup_desitnation"
 log "BACKUP LOCATION: $backup_location"
 log "Waking the PC..."
 
-if [ "$dry_run" -ne 1 ]; then
+# Check to see if the host is already awake
+checkHost
+
+# Don't shut it down if it was already
+# running.
+if [ $pcready = true ]; then
+    log "Host is already awake. Disabling shutdown after transfer..."
+    shutdown_remote_after_transfer=0
+fi
+
+if [ $dry_run -ne 1 ]  && [ $pcready = true ]; then
         if /usr/local/bin/awake -f ~/mac.list >/dev/null ; then
             log "Sent magick packet to host..."
         else
