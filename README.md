@@ -1,4 +1,4 @@
-# Nightly Backups
+# Daily Backups
 
 
 The backup shell script I use to facilitate daily backups of my files
