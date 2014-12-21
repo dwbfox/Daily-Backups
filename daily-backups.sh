@@ -59,7 +59,7 @@ function checkHost {
     pacready=false
 
     # Check basic ping packet response
-    if ping -c 1 "$nas_host" &> /dev/null; then
+    if ping -c 1 $nas_host &> /dev/null; then
             log "Host is responding to ping."
     fi
 
@@ -97,7 +97,7 @@ fi
 
 if [ $dry_run -ne 1 ]  && [ $pcready = true ]; then
         if /usr/local/bin/awake -f ~/mac.list >/dev/null ; then
-            log "Sent magick packet to host..."
+            log "Sent magic packet to host..."
         else
             log "An error occured while sending manage packet to host."
         fi
