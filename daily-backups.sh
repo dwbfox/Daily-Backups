@@ -15,9 +15,9 @@ backup_location="$HOME/backup_${backupdate}_${RANDOM}.tar.gz"
 backup_desitnation="/cygdrive/e/Automated\ Backups"
 
 # List of folders to backup into the single tar file.
-backup_sources[0]="$HOME/Data"
-backup_sources[1]="$HOME/Daily-Backups"
-backup_sources[2]="/var/www/html"
+backup_sources[0]="$HOME/Data/."
+backup_sources[1]="$HOME/Daily-Backups/."
+backup_sources[2]="/var/www/html/."
 
 log_error=~/nightly_backup.log
 
